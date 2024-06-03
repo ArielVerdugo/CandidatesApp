@@ -1,0 +1,219 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CandidateProfileScreen renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "marginTop": 10,
+      "padding": 12,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "marginBottom": 20,
+      }
+    }
+  >
+    <Image
+      defaultSource={1}
+      source={
+        Object {
+          "uri": "avatar_url",
+        }
+      }
+      style={
+        Object {
+          "borderColor": "#34495e",
+          "borderRadius": 75,
+          "borderWidth": 1,
+          "height": 150,
+          "width": 150,
+        }
+      }
+    />
+  </View>
+  <View
+    style={Object {}}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Personal
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Name:
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Jan
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Surname:
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Kowalski
+      </Text>
+    </View>
+  </View>
+  <View
+    style={Object {}}
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Contact
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Email:
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        jk@m.com
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        City:
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Poznan
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "padding": 8,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "fontSize": 12,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        Country:
+      </Text>
+      <Text
+        style={
+          Object {
+            "fontSize": 18,
+          }
+        }
+      >
+        Poland
+      </Text>
+    </View>
+  </View>
+</View>
+`;
