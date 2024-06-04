@@ -3,14 +3,14 @@ import { Button } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import CandidatesListScreen from '../screens/CandidatesListsScreen';
+import { CandidateFetchingScreen } from '../screens/CandidatesListsScreen';
 import CandidateProfileScreenWithLoading from '../screens/CandidateProfileScreenWithLoading';
 import CandidateProfileInputScreen from '../screens/CandidateProfileInputScreen';
 
 const CandidatesStack = createStackNavigator({
   CandidatesList: {
     screen: props => (
-      <CandidatesListScreen {...props} loadingProps={{ text: 'Loading candidates list...' }} />
+      <CandidateFetchingScreen {...props} loadingProps={{ text: 'Loading candidates list...' }} />
     ),
     navigationOptions: ({
       navigation: {

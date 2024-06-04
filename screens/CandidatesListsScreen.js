@@ -13,20 +13,25 @@ class CandidatesListScreen extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    const { navigation, payload } = this.props;
+    const { navigation, data } = this.props;
 
     navigation.setParams({
       onSubmited: async (candidate) => {
-        const added = await service.addCandidate(candidate);
-
-        const { candidates } = this.state;
-        this.setState({ candidates: [...candidates, added] });
-
-        navigation.goBack();
+        try {
+          const added = await service.addCandidate(candidate);
+          const { candidates } = this.state;
+          this.setState({ candidates: [...candidates, added] });
+          navigation.goBack();
+        } catch (error) {
+          console.error('Error while sending candidate:', error);
+          throw error;
+        }
       }
     });
 
-    this.state = { candidates: payload };
+    this.state = { candidates: data || [] };
+    this.onUpdated = this.onUpdated.bind(this);
+
   }
 
   onUpdated = ({
@@ -60,7 +65,17 @@ class CandidatesListScreen extends React.PureComponent {
           data={candidates}
           renderItem={({ item }) => (
             <TouchableWithoutFeedback
-              onPress={() => navigation.navigate('CandidateProfile', { id: item.id, onUpdated: this.onUpdated })
+              onPress={() => navigation.navigate('CandidateProfile', {
+                id: item.id,
+                name: item.name,
+                surname: item.surname,
+                email: item.email,
+                city: item.city,
+                country: item.country,
+                avatarUrl: item.avatarUrl,
+                onUpdated: this.onUpdated
+              }
+              )
               }
             >
               <View>
@@ -68,7 +83,7 @@ class CandidatesListScreen extends React.PureComponent {
               </View>
             </TouchableWithoutFeedback>
           )}
-          keyExtractor={({ id }) => id}
+          keyExtractor={(item) => item.id.toString()}
         />
       </View>
     );
@@ -77,7 +92,7 @@ class CandidatesListScreen extends React.PureComponent {
 
 const fetcher = async () => service.fetchCandidates();
 
-export default withFetching(CandidatesListScreen, LoadingIndicator, fetcher);
+export const CandidateFetchingScreen = withFetching(CandidatesListScreen, LoadingIndicator, fetcher);
 
 const styles = StyleSheet.create({
   container: {

@@ -48,28 +48,57 @@ class CandidateProfileInputScreen extends React.PureComponent {
       isSurnameValid: Boolean(surname),
       isEmailValid: Boolean(email),
       isCityValid: Boolean(city),
-      isCountryValid: Boolean(country)
+      isCountryValid: Boolean(country),
+      isAllInputsValid: false
     };
+
+    this.onNameChanged = this.onNameChanged.bind(this);
+    this.onSurnameChanged = this.onSurnameChanged.bind(this);
+    this.onEmailChanged = this.onEmailChanged.bind(this);
+    this.onCityChanged = this.onCityChanged.bind(this);
+    this.onCountryChanged = this.onCountryChanged.bind(this);
+    this.onSubmitPressed = this.onSubmitPressed.bind(this);
+    this.onValidate = this.onValidate.bind(this);
+
   }
 
-  onNameChanged = (value, isValid) => {
-    this.setState({ name: value, isNameValid: isValid });
+  onNameChanged = (value, isValid, messages) => {
+    this.setState({ name: value, isNameValid: isValid, messages: messages });
   };
 
-  onSurnameChanged = (value, isValid) => {
-    this.setState({ surname: value, isSurnameValid: isValid });
+  onSurnameChanged = (value, isValid, messages) => {
+    this.setState({ surname: value, isSurnameValid: isValid, messages: messages });
   };
 
-  onEmailChanged = (value, isValid) => {
-    this.setState({ email: value, isEmailValid: isValid });
+  onEmailChanged = (value, isValid, messages) => {
+    this.setState({ email: value, isEmailValid: isValid , messages: messages});
   };
 
-  onCityChanged = (value, isValid) => {
-    this.setState({ city: value, isCityValid: isValid });
+  onCityChanged = (value, isValid, messages) => {
+    this.setState({ city: value, isCityValid: isValid, messages: messages });
   };
 
-  onCountryChanged = (value, isValid) => {
-    this.setState({ country: value, isCountryValid: isValid });
+  onCountryChanged = (value, isValid, messages) => {
+    this.setState({ country: value, isCountryValid: isValid, messages: messages });
+  };
+
+  onValidate = () => {
+    const {
+      isCountryValid,
+      isCityValid,
+      isSurnameValid,
+      isEmailValid,
+      isNameValid,
+      ...candidate
+    } = this.state;
+
+
+    const isValid = [isCountryValid, isCityValid, isSurnameValid, isEmailValid, isNameValid].reduce(
+      (p, c) => p && c,
+      true
+    );
+
+    return isValid;
   };
 
   onSubmitPressed = () => {
@@ -97,6 +126,7 @@ class CandidateProfileInputScreen extends React.PureComponent {
     );
 
     if (isValid) {
+      this.setState.isAllInputsValid = true;
       onSubmited(candidate);
       goBack();
     }
@@ -121,7 +151,7 @@ class CandidateProfileInputScreen extends React.PureComponent {
           <CityInput label="City" value={city} onChanged={this.onCityChanged} />
           <CountryInput label="Country" value={country} onChanged={this.onCountryChanged} />
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.submitButton} onPress={this.onSubmitPressed}>
+            <TouchableOpacity disabled={this.state.isAllInputsValid} style={styles.submitButton} onPress={this.onSubmitPressed}>
               <Text style={styles.submitButtonText}>Submit</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => navigation.goBack()}>

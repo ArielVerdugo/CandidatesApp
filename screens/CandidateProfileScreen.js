@@ -10,7 +10,9 @@ import CandidateProfileSectionEntry from '../components/CandidateProfileSectionE
 export default class CandidateProfileScreen extends React.PureComponent {
   constructor(props) {
     super(props);
-    const { navigation, payload } = this.props;
+
+    const { navigation } = this.props;
+    const payload = navigation.state.params || {};
 
     navigation.setParams({
       ...payload,

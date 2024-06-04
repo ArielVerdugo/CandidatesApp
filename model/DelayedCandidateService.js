@@ -12,12 +12,22 @@ const delay = timeout => new Promise((resolve) => {
 
 const addCandidate = async (params) => {
   await delay(updateDelay);
-  return service.addCandidate(params);
+  try {
+    const candidate = await service.addCandidate(params);
+    return candidate;
+  } catch (error) {
+    console.error('Error in DelayedCandidateService:', error);
+  }
 };
 
 const updateCandidate = async (params) => {
   await delay(updateDelay);
-  return service.updateCandidate(params);
+  try {
+    const candidates = service.updateCandidate(params);
+    return candidates;
+  } catch (error) {
+    console.error('Error in DelayedCandidateService:', error);
+  }
 };
 
 const removeCandidate = async (params) => {
@@ -26,8 +36,13 @@ const removeCandidate = async (params) => {
 };
 
 const fetchCandidates = async () => {
-  await delay(fetchDelay);
-  return service.fetchCandidates();
+  await delay(updateDelay);
+  try {
+    const candidates = service.fetchCandidates();
+    return candidates;
+  } catch (error) {
+    console.error('Error in DelayedCandidateService:', error);
+  }
 };
 
 const fetchDetails = async (params) => {
